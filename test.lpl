@@ -1,0 +1,5 @@
+get (error)
+from (/var/log/apache2/error) 
+output (console) 
+send (vl.shumanov@gmail.com)
+zip

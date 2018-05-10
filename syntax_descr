@@ -1,0 +1,40 @@
+Log Parse Language Redux /LPLR
+<log_file> <keyword/regex> {
+    <actions>
+    output : <file>, //optional file if not set outputs to console
+    email : <mail address>, // sends out to email
+    zip, // if set zips the log_file
+    lines : <number_of_lines> //how many lines to select around the one with the keyword
+}
+
+/var/log/apache2/error.log /index.html {
+    output : /tmp/apache_error.log_stripped,
+    email : vl.shumanov@gmail.com,
+    zip,
+    lines : 2
+}
+
+get <keyword/regex> with next lines 2 from <log_file> output to <file_name/console> send to <email>
+
+example.lpl
+get ['index.html' or ('error' and 'critical')]
+from /var/log/apache2/error 
+and output to console 
+and send vl.shumanov@gmail.com 
+and zip
+
+keywords
+get,
+from
+output
+send
+zip
+
+
+
+expressions:
+    GET_CLAUSE : GET_KEYWORD CLAUSE_PARAMETER NEWLINE
+    FROM_CLAUSE : FROM_KEYWORD CLAUSE_PARAMETER NEWLINE
+    OUTPUT_CLAUSE : OUTPUT_KEYWORD CLAUSE_PARAMETER NEWLINE
+    SEND_CLAUSE /optional/ : SEND_KEYWORD CLAUSE_PARAMETER NEWLINE
+    ZIP_CLAUSE /optional/ : ZIP_KEYWORD
