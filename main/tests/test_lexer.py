@@ -19,6 +19,7 @@ class TestLexer(unittest.TestCase):
         "/": Token("SLASH", "/"),
         "\\": Token("BSLASH", "\\"),
         ".": Token("DOT", "."),
+        ",": Token("COMMA", ","),
     }
 
     test_cases_expr = {
@@ -32,7 +33,17 @@ class TestLexer(unittest.TestCase):
             Token("IDENT", "log"),
             Token("SLASH", "/"),
             Token("IDENT", "messages"),
-        ]
+        ],
+        "get error,warning from error.log": [
+            Token("GET_KEYWORD", "get"),
+            Token("IDENT", "error"),
+            Token("COMMA", ","),
+            Token("IDENT", "warning"),
+            Token("FROM_KEYWORD", "from"),
+            Token("IDENT", "error"),
+            Token("DOT", "."),
+            Token("IDENT", "log"),
+        ],
     }
 
     def test_single_token(self):

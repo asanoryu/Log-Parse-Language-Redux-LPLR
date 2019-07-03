@@ -42,4 +42,5 @@ _tok_defs = [
     TokenDef("BSLASH", re.compile(r"\\")),
     TokenDef("IDENT", re.compile(r"\w+")),
     TokenDef("DOT", re.compile("\.")),
+    TokenDef("COMMA", re.compile("\,")),
 ]
