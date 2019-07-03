@@ -1,6 +1,7 @@
-#Log-Parse-Language-Redux-LPLR
 
-Simple toy DSL for filtering and parsing files
+# Log-Parse-Language-Redux-LPLR
+
+> Simple toy DSL for filtering and parsing files
 
 Basic expression
 
