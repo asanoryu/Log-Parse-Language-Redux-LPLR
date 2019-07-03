@@ -5,7 +5,7 @@
 
 Basic expression
 
-    get <keyword> from <filename>
+    get <keyworddef> from <filenamedef>
 
 Installation
 
@@ -15,3 +15,12 @@ Commands
 
     python lplr.py repl - start the REPL
     python lplr.py test - run tests
+
+
+Grammar
+
+    get_expession : GET_KEYWORD keyword_list FROM_KEYWORD filepath
+    keyword_list :  VALUE (',' VALUE)*
+    filepath : [dir]*filename
+    dir : SLASH VALUE
+    filename:VALUE DOT VALUE

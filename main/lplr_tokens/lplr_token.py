@@ -40,7 +40,7 @@ _tok_defs = [
     TokenDef("NEWLINE", re.compile("[\n]")),
     TokenDef("SLASH", re.compile(r"\/")),
     TokenDef("BSLASH", re.compile(r"\\")),
-    TokenDef("IDENT", re.compile(r"\w+")),
+    TokenDef("VALUE", re.compile(r"\w+")),
     TokenDef("DOT", re.compile("\.")),
     TokenDef("COMMA", re.compile("\,")),
 ]
