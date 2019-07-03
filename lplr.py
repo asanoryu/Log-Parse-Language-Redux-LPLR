@@ -5,6 +5,9 @@ Uses a click cli
 import click
 import unittest
 
+from main.repl import lplr_repl
+
+
 VERSION_NUMBER = {"LPLR": 0.1, "REPL": 0.1}
 
 
@@ -34,6 +37,8 @@ def test():
 def repl():
     """Start LPLR REPL."""
     click.echo(f"LPLR version {VERSION_NUMBER}")
+    click.echo("-" * 60)
+    lplr_repl.run()
 
 
 cli.add_command(test)

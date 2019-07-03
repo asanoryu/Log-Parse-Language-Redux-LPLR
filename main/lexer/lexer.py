@@ -19,6 +19,7 @@ def lex(characters):
                 raise MatchingError(str(e))
             if match:
                 text = match.group(0)
+
                 if (
                     token_def.name
                     and token_def.name != "WHITESPACE"

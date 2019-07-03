@@ -38,8 +38,8 @@ _tok_defs = [
     # TokenDef('RPARENTESES',re.compile('\)')),
     TokenDef("WHITESPACE", re.compile("[ \t]+")),
     TokenDef("NEWLINE", re.compile("[\n]")),
+    TokenDef("SLASH", re.compile(r"\/")),
+    TokenDef("BSLASH", re.compile(r"\\")),
     TokenDef("IDENT", re.compile(r"\w+")),
-    TokenDef(
-        "PATH", re.compile(r"^(((?:\.\/|\.\.\/|\/)?(?:\.?\w+\/)*)(\.?\w+\.?\w+))$")
-    ),
+    TokenDef("DOT", re.compile("\.")),
 ]
