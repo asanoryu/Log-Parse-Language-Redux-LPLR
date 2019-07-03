@@ -1,3 +1,5 @@
+"""Token definitions for LPLR."""
+
 import re
 from typing import Pattern
 from dataclasses import dataclass
@@ -5,19 +7,21 @@ from dataclasses import dataclass
 
 @dataclass
 class TokenDef:
+    """Token definition with the proper regex."""
+
     name: str
     pattern: Pattern[str]
 
 
 @dataclass()
 class Token:
-    """ holds a token """
+    """A token."""
 
     name: str
     literal: str
 
     def to_dict(self):
-        """returns a dict representation of the Token"""
+        """Return a dict representation of the Token."""
         return {"token_name": self.name, "token_value": self.value}
 
 
@@ -34,5 +38,8 @@ _tok_defs = [
     # TokenDef('RPARENTESES',re.compile('\)')),
     TokenDef("WHITESPACE", re.compile("[ \t]+")),
     TokenDef("NEWLINE", re.compile("[\n]")),
-    TokenDef("CLAUSE_PARAMETER", re.compile("\([\w\\\/@.]+\)")),
+    TokenDef("IDENT", re.compile(r"\w+")),
+    TokenDef(
+        "PATH", re.compile(r"^(((?:\.\/|\.\.\/|\/)?(?:\.?\w+\/)*)(\.?\w+\.?\w+))$")
+    ),
 ]
