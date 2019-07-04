@@ -1,5 +1,5 @@
 """Parser for LPLR."""
-from typing import Generator
+from typing import Callable
 from main.lplr_tokens.lplr_token import Token
 from main.ast.lplr_ast import QueryStatement
 
@@ -7,7 +7,7 @@ from main.ast.lplr_ast import QueryStatement
 class LPLRParser:
     """Parser class for LPLR."""
 
-    def __init__(self, lex_generator: Generator[Token, None, None]):
+    def __init__(self, lex_generator: Callable):
         """Initialize with the provided Token generator."""
         self.lexer = lex_generator
 

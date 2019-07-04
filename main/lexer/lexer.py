@@ -9,7 +9,7 @@ from main.utils.lplr_errors import LexingError
 from main.utils import config
 
 
-def lex(characters: str) -> Generator[Token, None, None]:
+def lex(characters: str):
     """Check for each token definition pattern in the provided string."""
     pos = 0
     while pos < len(characters):
