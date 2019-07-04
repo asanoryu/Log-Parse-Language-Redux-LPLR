@@ -25,28 +25,28 @@ class LPLRParser:
     def next_token(self):
         """Advance current and peek_token positions."""
         self.cur_token = self.peek_token
-        self.peek_token = self.tokens[self.cur_pos]
+        if self.cur_pos < len(self.tokens):  # bind cur_pos to size of tokens list
+            self.peek_token = self.tokens[self.cur_pos]
         self.cur_pos += 1
 
     def parse(self) -> QueryStatement:
         """Parse the provided input."""
         query_stmt = QueryStatement()
-        print(self.tokens)
-        while self.cur_pos + 1 <= len(self.tokens):
+        while self.cur_token.name != "EOL":
             stmt = self.parse_stmt()
             if stmt is not None:
                 if isinstance(stmt, SelectExpr):
                     query_stmt.select_expression = stmt
 
             self.next_token()
-
-        print(f"query in parse {query_stmt}")
         return query_stmt
 
     def parse_stmt(self) -> Optional[Type[LPLRNode]]:
         """Parse a single statement."""
         if self.cur_token.name == "GET_KEYWORD":
             return self.parse_get_stmt()
+        elif self.cur_token.name == "VALUE":
+            
         else:
             return None
 
@@ -54,4 +54,7 @@ class LPLRParser:
         """Parse a get statement."""
         ret = SelectExpr()
         ret.build(self.peek_token.literal)
+        if self.tokens[self.cur_pos + 1].name == "COMMA":
+            self.next_token()
+
         return ret

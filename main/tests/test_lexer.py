@@ -34,6 +34,7 @@ class TestLexer(unittest.TestCase):
             Token("VALUE", "log"),
             Token("SLASH", "/"),
             Token("VALUE", "messages"),
+            Token("EOL", "EOL"),
         ],
         "get error,warning from error.log": [
             Token("GET_KEYWORD", "get"),
@@ -44,6 +45,7 @@ class TestLexer(unittest.TestCase):
             Token("VALUE", "error"),
             Token("DOT", "."),
             Token("VALUE", "log"),
+            Token("EOL", "EOL"),
         ],
         "gosho@pesho.com": [
             Token("VALUE", "gosho"),
@@ -51,6 +53,7 @@ class TestLexer(unittest.TestCase):
             Token("VALUE", "pesho"),
             Token("DOT", "."),
             Token("VALUE", "com"),
+            Token("EOL", "EOL"),
         ],
     }
 
