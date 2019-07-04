@@ -46,7 +46,7 @@ class LPLRParser:
         if self.cur_token.name == "GET_KEYWORD":
             return self.parse_get_stmt()
         elif self.cur_token.name == "VALUE":
-            
+            pass
         else:
             return None
 
@@ -54,7 +54,7 @@ class LPLRParser:
         """Parse a get statement."""
         ret = SelectExpr()
         ret.build(self.peek_token.literal)
-        if self.tokens[self.cur_pos + 1].name == "COMMA":
-            self.next_token()
+        # if self.tokens[self.cur_pos + 1].name == "COMMA":
+        #     self.next_token()
 
         return ret
