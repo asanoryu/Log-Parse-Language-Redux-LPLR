@@ -2,12 +2,14 @@
 
 has a single callable generator returning a stream of tokens. 
 """
+from typing import Generator
+
 from main.lplr_tokens.lplr_token import _tok_defs, Token
 from main.utils.lplr_errors import LexingError
 from main.utils import config
 
 
-def lex(characters):
+def lex(characters: str) -> Generator[Token, None, None]:
     """Check for each token definition pattern in the provided string."""
     pos = 0
     while pos < len(characters):
@@ -16,7 +18,7 @@ def lex(characters):
             try:
                 match = token_def.pattern.match(characters, pos)
             except Exception as e:
-                raise MatchingError(str(e))
+                raise LexingError(str(e))
             if match:
                 text = match.group(0)
 

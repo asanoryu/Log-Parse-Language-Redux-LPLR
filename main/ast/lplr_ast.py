@@ -1,7 +1,7 @@
 """Abstract syntax tree definitions for LPLR."""
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from typing import List
+from typing import List, Optional
 
 
 @dataclass
@@ -26,19 +26,6 @@ class LPLRExpression(LPLRNode):
 
 
 @dataclass
-class QueryStatement(LPLRStatement):
-    """Main statement of LPLR.
-
-    <query_statement>    ::=
-        GET <select_expression> <from_statement> [<output_statement>]
-    """
-
-    select_expression: SelectExpr
-    from_statement: FROMStatement
-    output_statement: LPLRStatement
-
-
-@dataclass
 class SelectExpr(LPLRExpression):
     """Expression containing all queried keywords.
 
@@ -55,6 +42,16 @@ class SelectExpr(LPLRExpression):
 
 
 @dataclass
+class FileRefExpr(LPLRExpression):
+    """Reference to a single file.
+    
+    <file_reference> ::= [<path_reference>] <filename>
+    """
+
+    file_path: str
+
+
+@dataclass
 class FROMStatement(LPLRStatement):
     """Contains filestatements.
     
@@ -65,10 +62,43 @@ class FROMStatement(LPLRStatement):
 
 
 @dataclass
-class FileRefExpr(LPLRExpression):
-    """Reference to a single file.
+class Email(LPLRExpression):
+    """Email representation."""
+
+    email: str
+
+
+@dataclass
+class SendStatement(LPLRStatement):
+    """State if output should be sent and where.
     
-    <file_reference> ::= [<path_reference>] <filename>
+    <send_statement> ::= SEND <email>
     """
 
-    file_path: str
+    email: Email
+
+
+@dataclass
+class OutputStatement(LPLRStatement):
+    """Optional statement for outputing the response of the query.
+    
+    <output_statement> ::= <file_reference> [ZIP] [<send_statement>]
+
+    """
+
+    fileref: Optional[FileRefExpr] = None
+    zip_: bool = False
+    send_statement: Optional[SendStatement] = None
+
+
+@dataclass
+class QueryStatement(LPLRStatement):
+    """Main statement of LPLR.
+
+    <query_statement>    ::=
+        GET <select_expression> <from_statement> [<output_statement>]
+    """
+
+    select_expression: Optional[SelectExpr] = None
+    from_statement: Optional[FROMStatement] = None
+    output_statement: Optional[OutputStatement] = None

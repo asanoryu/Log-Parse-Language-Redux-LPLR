@@ -7,6 +7,11 @@ Basic expression
 
     get <keyworddef> from <filenamedef>
 
+Examples
+
+    get error from /var/log/apache/error.log
+    get error,warning from /var/log/messages output /tmp/parsed_messages
+
 Installation
 
     pip install -r requirements.txt
