@@ -57,15 +57,13 @@ class TestLexer(unittest.TestCase):
     def test_single_token(self):
         """Test single token generation."""
         for case, expected in self.test_cases_single.items():
-            for token in lex(case):
-                self.assertEqual(token, expected)
+            token = lex(case)[0]
+            self.assertEqual(token, expected)
 
     def test_expression_lexing(self):
         """Test lexing a full a expression."""
         for case, expected in self.test_cases_expr.items():
-            got = []
-            for token in lex(case):
-                got.append(token)
+            got = lex(case)
             self.assertEqual(expected, got)
 
 

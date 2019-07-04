@@ -36,3 +36,4 @@ def lex(characters: str):
             )
         else:
             pos = match.end(0)
+    return tokens
