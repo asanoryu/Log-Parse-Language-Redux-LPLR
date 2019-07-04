@@ -2,7 +2,7 @@
 
 has a single callable generator returning a stream of tokens. 
 """
-from typing import Generator
+from typing import List
 
 from main.lplr_tokens.lplr_token import _tok_defs, Token
 from main.utils.lplr_errors import LexingError
@@ -12,6 +12,7 @@ from main.utils import config
 def lex(characters: str):
     """Check for each token definition pattern in the provided string."""
     pos = 0
+    tokens: List = []
     while pos < len(characters):
         match = None
         for token_def in _tok_defs:
@@ -27,7 +28,7 @@ def lex(characters: str):
                     and token_def.name != "WHITESPACE"
                     and config.IGNORE_WHITESPACE
                 ):
-                    yield Token(token_def.name, text)
+                    tokens.append(Token(token_def.name, text))
                 break
         if not match:
             raise LexingError(

@@ -14,7 +14,6 @@ class LPLRParser:
     def parse(self, input_: str):
         """Parse the provided input."""
         query_stmt = QueryStatement()
+        tokens = self.lexer(input_)
 
-        for tok in self.lexer(input_):
-            print(tok)
         return query_stmt
