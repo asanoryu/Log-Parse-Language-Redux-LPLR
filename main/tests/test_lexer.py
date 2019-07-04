@@ -20,6 +20,7 @@ class TestLexer(unittest.TestCase):
         "\\": Token("BSLASH", "\\"),
         ".": Token("DOT", "."),
         ",": Token("COMMA", ","),
+        "@": Token("AT", "@"),
     }
 
     test_cases_expr = {
@@ -43,6 +44,13 @@ class TestLexer(unittest.TestCase):
             Token("VALUE", "error"),
             Token("DOT", "."),
             Token("VALUE", "log"),
+        ],
+        "gosho@pesho.com": [
+            Token("VALUE", "gosho"),
+            Token("AT", "@"),
+            Token("VALUE", "pesho"),
+            Token("DOT", "."),
+            Token("VALUE", "com"),
         ],
     }
 

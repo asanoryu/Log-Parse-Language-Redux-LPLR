@@ -19,17 +19,17 @@ Commands
 
 Grammar
 
-    <query_specification>    ::=
-        GET <select_list> <from_expression> [<output_expression>]
+    <query_statement>    ::=
+        GET <select_expression> <from_statement> [<output_statement>]
 
-    <select_list>    ::=
+    <select_expression>    ::=
         <value> [ { <comma> <value> }... ]
 
-    <from_expression>    ::=   FROM <file_reference> [ { <comma> <file_reference>.. ]
+    <from_statement>    ::=   FROM <file_reference> [ { <comma> <file_reference>.. ]
 
-    <output_expression> ::= <file_reference> [ZIP] [<send_expression>]
+    <output_statement> ::= <file_reference> [ZIP] [<send_statement>]
 
-    <send_expression> ::= SEND <email_expression>
+    <send_statement> ::= SEND <email>
 
     <file_reference> ::= [<path_reference>] <filename>
 
@@ -37,7 +37,7 @@ Grammar
 
     <filename> ::= <value>[<dot><value>]
 
-    <email_expression> ::= <value><at><value><dot><value>
+    <email> ::= <value><at><value><dot><value>
 
     <slash> ::= /
 

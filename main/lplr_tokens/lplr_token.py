@@ -43,4 +43,5 @@ _tok_defs = [
     TokenDef("VALUE", re.compile(r"\w+")),
     TokenDef("DOT", re.compile("\.")),
     TokenDef("COMMA", re.compile("\,")),
+    TokenDef("AT", re.compile("@")),
 ]
