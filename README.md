@@ -19,8 +19,36 @@ Commands
 
 Grammar
 
-    get_expession : GET_KEYWORD keyword_list FROM_KEYWORD filepath
-    keyword_list :  VALUE (',' VALUE)*
-    filepath : [dir]*filename
-    dir : SLASH VALUE
-    filename:VALUE DOT VALUE
+    <query_specification>    ::=
+        GET <select_list> <from_expression> [<output_expression>]
+
+    <select_list>    ::=
+        <value> [ { <comma> <value> }... ]
+
+    <from_expression>    ::=   FROM <file_reference> [ { <comma> <file_reference>.. ]
+
+    <output_expression> ::= <file_reference> [ZIP] [<send_expression>]
+
+    <send_expression> ::= SEND <email_expression>
+
+    <file_reference> ::= [<path_reference>] <filename>
+
+    <path_reference> ::= (<slash><value>)*
+
+    <filename> ::= <value>[<dot><value>]
+
+    <email_expression> ::= <value><at><value><dot><value>
+
+    <slash> ::= /
+
+    <dot> ::= .
+
+    <comma> ::= ,
+
+    <at> ::= @
+
+    <value> ::=  <letter> { <letter> | <digit> }
+
+    <letter> ::= 	["a"-"z","A"-"Z"] | ["\u0153"-"\ufffd"]
+
+    <digit> ::= ["0"-"9"]
